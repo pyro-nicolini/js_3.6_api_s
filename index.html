@@ -9,6 +9,7 @@
       src="https://kit.fontawesome.com/7dc273d6fa.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <header></header>
@@ -17,15 +18,19 @@
         <div class="cards">
             <div class="card">
                 <p>Pesos CPL</p>
-                <input type="number">
+                <input id="input1" type="number">
                 <p>Moneda a convertir</p>
                 <select name="divisas" id="divisas">
-                    <option value="Dolar">Dolar</option>
+                    <option value="dolar">Dolar</option>
+                    <option value="bitcoin">Bitcoin</option>
+                    <option value="euro">Euro</option>
+                    <option value="uf">Uf</option>
                 </select>
             </div>
+            <span>Resultado: <p id="result"></p></span>
         </div>
         <div>
-            <canvas id="myChart"></canvas>
+          <canvas id="myChart" width="800" height="400"></canvas>
         </div>
     </main>
     <footer>

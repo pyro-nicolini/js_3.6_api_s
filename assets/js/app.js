@@ -1,65 +1,84 @@
-// const inyect = document.getElementById('card');
-// const apiRouth = `https://api.gael.cloud/general/public/monedas`;
+const input = document.getElementById('input1')
+const resultado = document.getElementById('result')
+const seleccion = document.getElementById('divisas')
+let options = document.querySelectorAll('option')
+let valorElegido = 0;
+let opcionElegida = 'dolar';
 
-// async function obteniendoDatos(){
-//     try {
-//         const response = await fetch(apiRouth);
-//         const data = await response.json();
-//         return data;
-//     } catch (err) {
-//         console.error('Error:', err);
-//     }
-// }
 
-// async function mostrarDatos(){
-//     try {
-//         const datos = await obteniendoDatos();
-//         console.log(datos);
-//     } catch (e) {
-//         console.error(e);
-//     }
-// }
+options.forEach((option, i)=> {
+  option.id = option.value;
+})
 
-// mostrarDatos();
+input.addEventListener('change', () => actualizarElegido())
+
+seleccion.addEventListener('change', () => actualizarElegido())
+
+
+function actualizarElegido(){
+  opcionElegida = seleccion.value;
+  valorElegido = Number(input.value);
+  convertirMoneda(valorElegido, opcionElegida)
+}
+
+function convertirMoneda(valor, divisa){
+  
+  resultado.innerText = `${valor}, ${divisa}`
+}
+
+
+
 
 async function getMonedas() {
-  const endpoint = "https://api.gael.cloud/general/public/monedas";
+  const endpoint = "https://mindicador.cl/api/";
   const res = await fetch(endpoint);
   const monedas = await res.json();
-  return monedas;
-}
-function prepararConfiguracionParaLaGrafica(monedas) {
-  // Creamos las variables necesarias para el objeto de configuración
-  const tipoDeGrafica = "line";
-  const nombresDeLasMonedas = monedas.map((moneda) => moneda.Codigo);
-  const titulo = "Monedas";
-  const colorDeLinea = "blue";
-  const valores = monedas.map((moneda) => {
-    const valor = moneda.Valor.replace(",", ".");
-    return Number(valor);
-  });
-  // Creamos el objeto de configuración usando las variables anteriores
-  const config = {
-    type: tipoDeGrafica,
-    data: {
-      labels: nombresDeLasMonedas,
-      datasets: [
-        {
-          label: titulo,
-          backgroundColor: colorDeLinea,
-          data: valores,
-        },
-      ],
-    },
-  };
-  return config;
+  console.log(Object.values(monedas) //convertimos objeto en array
+  .filter(elemento=> typeof elemento === 'object') // filtramos por tipo objeto
+  .filter(elemento=>elemento.unidad_medida == 'Pesos')) // filtramos por unidad_medida
 }
 
-async function renderGrafica() {
-    const monedas = await getMonedas();
-    const config = prepararConfiguracionParaLaGrafica(monedas);
-    const chartDOM = document.getElementById("myChart");
-    new Chart(chartDOM, config);
-    }
-    renderGrafica();
-    
+getMonedas()
+
+//   function prepararConfiguracionParaLaGrafica(monedas) {
+//     // Creamos las variables necesarias para el objeto de configuración
+//     const tipoDeGrafica = "line";
+//     const nombresDeLasMonedas = monedas;
+//     const titulo = "Monedas";
+//     const colorDeLinea = "red";
+//     const valores = monedas;
+
+//     // Creamos el objeto de configuracion
+//     const configGrafica = {
+//     type: tipoDeGrafica,
+//     data: {
+//     labels: nombresDeLasMonedas,
+//     datasets: [
+//       {
+//         label: titulo,
+//         data: valores,
+//         backgroundColor: colorDeLinea,
+//         fill: false,
+//       },
+//     ],
+//     },
+//     options: {
+//     responsive: true,
+//     title: {
+//       display: true,
+//       text: titulo,
+//     },
+//     },
+//     };
+
+//     return configGrafica;
+//   }
+
+//   async function renderGrafica() {
+//     const monedas = await getMonedas();
+//     const config = prepararConfiguracionParaLaGrafica(monedas);
+//     // Aquí se debería insertar la llamada a la función que genera y muestra la gráfica
+//   }
+
+//   renderGrafica();
+
