@@ -1,4 +1,5 @@
 const input = document.getElementById('input1')
+const boton = document.getElementById('boton')
 const resultado = document.getElementById('result')
 const seleccion = document.getElementById('divisas')
 let options = document.querySelectorAll('option')
@@ -9,9 +10,7 @@ options.forEach((option, i)=> {
   option.id = option.value;
 })
 
-input.addEventListener('change', () => actualizarElegido())
-
-seleccion.addEventListener('change', () => actualizarElegido())
+boton.addEventListener('click', () => actualizarElegido())
 
 function actualizarElegido(){
   opcionElegida = seleccion.value;
@@ -32,7 +31,7 @@ async function getMonedas() {
 async function convertirMoneda(valor, divisa){
   const monedasFiltradasPorPesos = await getMonedas();
   let simbol = '';
-  let divisaFiltrada = monedasFiltradasPorPesos.filter(elemento=> elemento.codigo== divisa);
+  let divisaFiltrada = monedasFiltradasPorPesos.filter(elemento=> elemento.codigo == divisa);
   let conversion = valor / divisaFiltrada[0].valor;
 
   if (divisa == 'dolar'){
@@ -49,45 +48,47 @@ async function convertirMoneda(valor, divisa){
 actualizarElegido()
 
 
-//   function prepararConfiguracionParaLaGrafica(monedas) {
-//     // Creamos las variables necesarias para el objeto de configuración
-//     const tipoDeGrafica = "line";
-//     const nombresDeLasMonedas = monedas;
-//     const titulo = "Monedas";
-//     const colorDeLinea = "red";
-//     const valores = monedas;
+async function getDolar() {
+  const endpoint = "https://mindicador.cl/api/dolar";
+  const res = await fetch(endpoint);
+  const dolar = await res.json();
+  return dolar.serie;
+}
 
-//     // Creamos el objeto de configuracion
-//     const configGrafica = {
-//     type: tipoDeGrafica,
-//     data: {
-//     labels: nombresDeLasMonedas,
-//     datasets: [
-//       {
-//         label: titulo,
-//         data: valores,
-//         backgroundColor: colorDeLinea,
-//         fill: false,
-//       },
-//     ],
-//     },
-//     options: {
-//     responsive: true,
-//     title: {
-//       display: true,
-//       text: titulo,
-//     },
-//     },
-//     };
+function prepararConfiguracionParaLaGrafica(monedas) {
+  // Creamos las variables necesarias para el objeto de configuración
+  const tipoDeGrafica = "line";
+  let nombresDeLasMonedas = monedas.map((moneda) => moneda.fecha);
+  let fechas = nombresDeLasMonedas.map((fechas) => fechas.split("T").shift()).splice(0,10);
 
-//     return configGrafica;
-//   }
 
-//   async function renderGrafica() {
-//     const monedas = await getMonedas();
-//     const config = prepararConfiguracionParaLaGrafica(monedas);
-//     // Aquí se debería insertar la llamada a la función que genera y muestra la gráfica
-//   }
+  const titulo = "Monedas";
+  const colorDeLinea = "red";
+  const valores = monedas.map((moneda) => {
+  const valor = moneda.valor;
+  return Number(valor);
+  });
+  // Creamos el objeto de configuración usando las variables anteriores
+  const config = {
+  type: tipoDeGrafica,
+  data: {
+  labels: fechas,
+  datasets: [{
+    label: titulo,
+    backgroundColor: colorDeLinea,
+    data: valores
+    }
+    ]
+    }
+    };
+    return config;
+    }
 
-//   renderGrafica();
-
+    async function renderGrafica() {
+      const monedas = await getDolar();
+      const config = prepararConfiguracionParaLaGrafica(monedas);
+      const chartDOM = document.getElementById("myChart");
+      new Chart(chartDOM, config);
+      }
+      renderGrafica();
+          

@@ -79,7 +79,7 @@ main {
 
 button {
   border: 1px solid white !important;
-  background-color: rgba(163, 163, 163, 0.062);
+  background: linear-gradient(15deg, rgba(151, 33, 247, 0.266), rgb(84, 96, 255));
   color: white;
   padding: 0.5rem 1rem;
   border: none;
