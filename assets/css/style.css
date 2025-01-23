@@ -39,7 +39,11 @@ main {
   align-items: center;
   flex-direction: column;
   width: 100%;
-  background: linear-gradient(45deg, rgb(150, 33, 247), rgb(84, 96, 255), rgb(74, 77, 255));
+  background: linear-gradient(
+  rgb(112, 1, 177),
+   #024069 
+   );
+   padding-bottom: 3rem;
 }
 
 .cards {
@@ -59,7 +63,8 @@ main {
   flex-direction: column;
   justify-content: space-evenly;
   text-align: center;
-  padding: 1rem;
+  padding: 0 1rem;
+  padding-bottom: 2rem;
   border-radius: 1rem;
   border: 1px solid rgba(0, 0, 0, 0.5);
   background: linear-gradient(15deg, rgb(150, 33, 247), rgb(84, 96, 255))
@@ -77,15 +82,39 @@ main {
   font-size: 1.2rem;
 }
 
-button {
+button, select, input, option {
   border: 1px solid white !important;
-  background: linear-gradient(15deg, rgba(151, 33, 247, 0.266), rgb(84, 96, 255));
   color: white;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
+
+button {
+  background: linear-gradient(15deg, rgba(151, 33, 247, 0.266), rgba(109, 38, 251, 0.515));
+}
+button:hover {
+  background: linear-gradient(15deg, rgba(51, 12, 131, 0.515), rgba(71, 6, 125, 0.266));
+}
+
+select {
+  text-align: center !important;
+  background-color: #b040c6;
+}
+
+input {
+  color: #6b11e9;
+  text-align: center !important;
+  background-color: #e2dd96;
+}
+
+option {
+  text-align: start;
+  background-color: #6e0bac;
+  color: white;
+}
+
 
 footer {
   grid-area: footer;
@@ -121,6 +150,6 @@ footer p {
 
 #myChart {
   background-color: rgb(252, 192, 63);
-  width: 100%;
-  height: 30rem;
+  width: 80%;
+  height: 20rem;
 }
