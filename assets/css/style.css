@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 /* Estilos para móvil */
 body {
@@ -6,9 +6,9 @@ body {
   color: #eeeeee;
   display: grid;
   grid-template-areas:
-  "header"
-  "main"
-  "footer";
+    "header"
+    "main"
+    "footer";
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
@@ -17,18 +17,8 @@ body {
   text-align: center;
 }
 
-header {
-  grid-area: header;
-  height: 5rem;
-  background-color: rgb(230, 123, 0);
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-}
-
-input, select {
+input,
+select {
   text-align: center;
 }
 
@@ -39,12 +29,28 @@ main {
   align-items: center;
   flex-direction: column;
   width: 100%;
-  background: linear-gradient(
-  rgb(112, 1, 177),
-   #024069 
-   );
-   padding-bottom: 3rem;
+  background: radial-gradient(#6f039d, #320177, rgb(0, 0, 0));
+  padding-bottom: 3rem;
 }
+
+h2 {
+  animation: neon 3s ease-in-out infinite;
+  text-shadow: 2px 2px 5px #ff00ff, -2px -2px 20px #ff99ff;
+  color: white;
+}
+
+@keyframes neon {
+  0%, 100% {
+    text-shadow: 4px 4px 10px #ff00ff, -4px -4px 20px #ff99ff;
+    transform: scale(1);
+  }
+  50% {
+    text-shadow: 0 0 50px #ff33ff, 0 0 60px #ff66ff;
+    transform: scale(1.01);
+  }
+}
+
+
 
 .cards {
   padding: 1rem 0;
@@ -66,47 +72,70 @@ main {
   padding: 0 1rem;
   padding-bottom: 2rem;
   border-radius: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  background: linear-gradient(15deg, rgb(150, 33, 247), rgb(84, 96, 255))
+  border: 1px solid rgba(255, 255, 255, 0.348);
+  background: linear-gradient(#7700ff, #005eff 160%);
+  box-shadow: 0px 0px 20px 0px #ff00ff;
 }
 
-.card img {
-  width: 100%;
-  max-height: 30rem;
-  object-fit: contain;
-  border-radius: 8px;
-  background-color: rgb(103, 155, 93);
+strong {
+  padding: 0;
+  margin: 0;
 }
 
-.card h2 {
-  font-size: 1.2rem;
-}
-
-button, select, input, option {
+button,
+select,
+input,
+option {
   border: 1px solid white !important;
   color: white;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 1.1rem;
 }
 
 button {
-  background: linear-gradient(15deg, rgba(151, 33, 247, 0.266), rgba(109, 38, 251, 0.515));
+  margin: 1rem 0;
+  padding: .8rem;
+  background: radial-gradient(
+    rgba(204, 0, 255, 0.808),
+    rgba(109, 38, 251, 0.515)
+  );
+  transition: all .5s ease-in-out;
 }
 button:hover {
-  background: linear-gradient(15deg, rgba(51, 12, 131, 0.515), rgba(71, 6, 125, 0.266));
+  background: radial-gradient(
+    rgba(109, 38, 251, 0.515),
+    rgba(47, 0, 255, 0.808)
+  );
 }
 
 select {
   text-align: center !important;
-  background-color: #b040c6;
+  background: radial-gradient(
+    rgba(107, 36, 249, 0.349),
+    rgba(176, 25, 252, 0.445)
+  );
+}
+select:hover {
+  background-color: #5f0eff;
 }
 
 input {
-  color: #6b11e9;
+  color: #ffffff;
   text-align: center !important;
-  background-color: #e2dd96;
+  background: radial-gradient(
+    rgba(84, 17, 131, 0.515),
+    rgba(98, 8, 121, 0.808)
+  );
+  font-weight: 600;
+}
+
+input::placeholder {
+  font-weight: 100;
+  color: #ffffff8c; /* Celeste flúor */
+  opacity: 1; /* Si deseas que tenga opacidad completa */
 }
 
 option {
@@ -114,7 +143,6 @@ option {
   background-color: #6e0bac;
   color: white;
 }
-
 
 footer {
   grid-area: footer;
@@ -128,9 +156,8 @@ footer {
 }
 
 footer p {
-  font-size: .5rem;
+  font-size: 0.5rem;
 }
-
 
 @media (min-width: 576px) {
   body {
@@ -149,7 +176,33 @@ footer p {
 }
 
 #myChart {
-  background-color: rgb(252, 192, 63);
+  border: 1px solid rgba(255, 255, 255, 0.348);
+  background: linear-gradient(#7e35d0, #0c3d92 160%);
+  box-shadow: 0px 0px 20px 0px #005eff;
   width: 80%;
   height: 20rem;
+  padding: 1rem;
+  color: white;
+}
+
+canvas {
+  color: white !important;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

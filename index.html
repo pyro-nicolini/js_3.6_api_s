@@ -13,28 +13,38 @@
   </head>
   <body>
     <main>
-        <h2>Conversor de monedas Nacional</h2>
+        <h2>Conversor de Pesos 🌶️</h2>
         <div class="cards">
-            <div class="card">
-                <p>Pesos CPL</p>
-                <input id="input1" type="number" placeholder="Ingrese el monto en CPL" min="0">
-                <p>Moneda a convertir</p>
-                <select name="divisas" id="divisas">
-                    <option value="dolar">Dolar</option>
-                    <option value="euro">Euro</option>
-                    <option value="uf">Unidad de Fomento</option>
-                    <option value="utm">Unidad Tributaria Mensual</option>
-                </select>
+          <div id="mensajeDeCarga" style="display: none;">
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem; padding: 1rem 0;">
+              <div class="spinner"></div>
+              <div style="color: wheat;">Cargando datos, por favor espere...</div>
             </div>
-            <button class="button" id="boton">Convertir</button>
-            <span>Resultado: <p id="result"></p></span>
+          </div>
+          <div class="card">
+            <div>
+              <p>Pesos CPL</p>
+              <input id="input1" type="number" placeholder="Ingrese el monto en CPL" min="0">
+            </div>
+            <div>
+              <p>Moneda a convertir</p>
+              <select name="divisas" id="divisas">
+                <option value="dolar">Dolar</option>
+                <option value="euro">Euro</option>
+                <option value="uf">Unidad de Fomento</option>
+                <option value="utm">Unidad Tributaria Mensual</option>
+              </select>
+            </div>
+          </div>
+          <button class="button" id="boton">Convertir</button>
+          <span>Resultado: <p id="result">$0</p></span>
         </div>
         <div>
           <canvas id="myChart" width="800" height="400"></canvas>
         </div>
     </main>
     <footer>
-      <p>Pyro Nicolini</p>
+      <h2 style="font-size: 1rem;">Pyro Nicolini</h2>
     </footer>
     <script src="assets/js/app.js"></script>
   </body>
